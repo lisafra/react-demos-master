@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>JSX语法练习</title>
+		<script src="build/react.js" type="text/javascript" ></script>
+		<script src="build/react-dom.js" type="text/javascript" ></script>
+		<script src="build/browser.min.js" type="text/javascript" ></script>
+	</head>
+	<body>
+		<div id="example">
+			
+		</div>
+		
+		<script type="text/babel">
+			
+			var names = [ 'Alice', 'Emily' , 'Kate'];
+			
+			ReactDOM.render(
+				<div>
+				{
+					names.map(function(name){
+						return <div>hello , {name}</div>
+					})
+				}
+				</div>,
+				document.getElementById('example')
+			)
+					
+		</script>
+	</body>
+</html>

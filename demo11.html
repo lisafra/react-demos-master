@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="build/react.js"></script>
+		<script src="build/react-dom.js" type="text/javascript" charset="utf-8"></script>
+		<script src="build/browser.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="build/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div id="example">
+			
+		</div>
+		
+		<script type="text/babel">
+			var UserGist = React.createClass({
+				getInitialState : function(){
+					return {
+						username : ' ',
+						lastGistUrl : ' '
+					};
+				},
+				componentDidMount : function(){
+					$.get(this.props.source,function(result){
+						var data = result[0];
+						if(this.isMounted()){
+							this.setState({
+								 username: data.owner.login,
+          						lastGistUrl: data.html_url
+							})
+						}	
+					}.bind(this))
+				},
+				render : function(){
+					return (
+						<div>
+							{this.state.username} last gist is
+							<a href = {this.state.lastGistUrl}> here</a>
+						</div>
+					)
+				}
+			})
+			
+			ReactDOM.render(
+				<UserGist  source='https://api.github.com/users/octocat/gists' />,
+				document.getElementById('example')
+			)
+			
+		</script>
+	</body>
+</html>
